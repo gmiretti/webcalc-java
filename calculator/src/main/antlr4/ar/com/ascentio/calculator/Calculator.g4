@@ -5,7 +5,10 @@ eval
  ;
 
 expr
- : expr '*' expr    #mult_expr
+ : '-' expr         #unaryminus_expr
+ | '+' expr         #unaryplus_expr
+ | 'log' expr		#log_expr 
+ | expr '*' expr    #mult_expr
  | expr '/' expr    #div_expr
  | expr '+' expr    #add_expr
  | expr '-' expr    #min_expr

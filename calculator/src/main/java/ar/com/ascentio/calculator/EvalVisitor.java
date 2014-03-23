@@ -56,4 +56,19 @@ public class EvalVisitor extends CalculatorBaseVisitor<Double> {
     public Double visitAdd_expr(@NotNull CalculatorParser.Add_exprContext ctx) {
         return this.visit(ctx.expr(0)) + this.visit(ctx.expr(1));
     }
+    
+    @Override
+    public Double visitUnaryminus_expr(@NotNull CalculatorParser.Unaryminus_exprContext ctx) {
+    	return -1 * super.visit(ctx.expr());
+    }
+    
+    @Override
+    public Double visitUnaryplus_expr(@NotNull CalculatorParser.Unaryplus_exprContext ctx) {
+    	return super.visit(ctx.expr());
+    }
+    
+    @Override
+    public Double visitLog_expr(@NotNull CalculatorParser.Log_exprContext ctx) {
+    	return Math.log10(super.visit(ctx.expr()));
+    }
 }
