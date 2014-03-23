@@ -8,7 +8,7 @@ import org.antlr.v4.runtime.CommonTokenStream;
 
 public class Calculator {
 
-	static Double eval(String expression) {
+	public static Double eval(String expression) {
 		Map<String, Double> variables = new HashMap<>();
         variables.put("pi", Math.PI);
 
