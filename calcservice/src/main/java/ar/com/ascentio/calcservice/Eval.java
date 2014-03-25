@@ -17,16 +17,16 @@ public class Eval {
     @Consumes(MediaType.APPLICATION_JSON)
     public EvalResponse eval(EvalRequest request) {
     	
-    	boolean error = false;
+    	String status = "OK";
     	Double result = 0.0;
     	try {
-    		result = Calculator.eval(request.expression);
+    		result = Calculator.eval(request.statement);
     		
     	} catch (Exception e) {
-    		error = true;
+    		status = "ERROR";
     	}
     	
-    	EvalResponse evalRes = new EvalResponse(request.expression, result, error);
+    	EvalResponse evalRes = new EvalResponse(request.statement, result, status);
     	return evalRes;
     }
 }

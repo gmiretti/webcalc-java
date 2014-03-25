@@ -17,13 +17,6 @@ expr
  | IDENTIFIER       #id_expr
  ;
 
-MULT : '*';
-DIV : '/';
-ADD : '+';
-MIN : '-';
-OPAR : '(';
-CPAR : ')';
-
 NUMBER
  : [0-9]+ ('.' [0-9]*)?
  | '.' [0-9]+

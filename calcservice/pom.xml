@@ -40,12 +40,6 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.glassfish.extras</groupId>
-      <artifactId>glassfish-embedded-web</artifactId>
-      <version>${glassfish.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
     	<groupId>ar.com.ascentio</groupId>
     	<artifactId>calculator</artifactId>
     	<version>0.1.0</version>

@@ -1,11 +1,11 @@
-package ar.com.ascentio.calcservice;
+package ar.com.ascentio.calcclient;
 
 public class EvalRequest {
 	
-	public String statement;
+	public String expression;
 	
 	public EvalRequest(String expression) {
-		this.statement = expression;
+		this.expression = expression;
 	}
 	
 	public EvalRequest() {
