@@ -9,7 +9,6 @@
   <modules>
     <module>calculator</module>
     <module>calcservice</module>
-    <module>calcclient</module>
   </modules>
   <build>
   	<plugins>
