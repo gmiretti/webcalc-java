@@ -4,8 +4,8 @@ public class EvalRequest {
 	
 	public String statement;
 	
-	public EvalRequest(String expression) {
-		this.statement = expression;
+	public EvalRequest(String statement) {
+		this.statement = statement;
 	}
 	
 	public EvalRequest() {
