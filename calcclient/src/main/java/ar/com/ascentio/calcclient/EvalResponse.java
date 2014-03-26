@@ -7,7 +7,7 @@ public class EvalResponse {
 	
 	public EvalResponse(String statement, Double result, String status) {
 		this.statement = statement;
-		this. result = result;
+		this.result = result;
 		this.status = status;
 	}
 }
