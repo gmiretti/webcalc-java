@@ -10,9 +10,10 @@ import javax.ws.rs.core.MediaType;
 import ar.com.ascentio.calculator.Calculator;
 
 @Path("/eval")
-public class Eval {
+public class EvalHandler {
     
     @POST
+    @Path("")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public EvalResponse eval(EvalRequest request) {

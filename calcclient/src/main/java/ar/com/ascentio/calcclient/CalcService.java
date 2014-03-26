@@ -2,7 +2,8 @@ package ar.com.ascentio.calcclient;
 
 //import org.apache.log4j.Logger;
 
-import ar.com.ascentio.httpclient.HTTPConnection;
+import ar.com.ascentio.httpclient.HTTPClient;
+import ar.com.ascentio.httpclient.HttpUrlHTTPClient;
 import ar.com.ascentio.httpclient.HTTPResponse;
 
 import com.google.gson.Gson;
@@ -24,18 +25,17 @@ public class CalcService {
 		
 		try {
 			String url = baseUrl + "/eval";
-			HTTPConnection httpConnection = new HTTPConnection(url);
+			HTTPClient httpClient = new HttpUrlHTTPClient(url);
 		
-			httpConnection.setHeader("Content-Type", "application/json");
-			httpConnection.setHeader("Accept", "application/json");
+			httpClient.setHeader("Content-Type", "application/json");
+			httpClient.setHeader("Accept", "application/json");
 			
 			Gson gson = new Gson();
 			String body = gson.toJson(evalRequest);
 			
-			HTTPResponse response = httpConnection.post(body);
+			HTTPResponse response = httpClient.post(body);
 			int responseCode = response.code;
 			String responseData = response.data;
-			System.out.println(responseData);
 			//logger.info("HTTP Response code: " + responseCode);
 			//logger.info("HTTP response data: " + responseData);
 			
@@ -50,5 +50,65 @@ public class CalcService {
 		
 		return evalResponse;
 	}
+	
+	public Session storeSession(Session session) {
+		
+		Session responseSession = null;
+		
+		try {
+			String url = baseUrl + "/session";
+			HTTPClient httpClient = new HttpUrlHTTPClient(url);
+		
+			httpClient.setHeader("Content-Type", "application/json");
+			httpClient.setHeader("Accept", "application/json");
+			
+			Gson gson = new Gson();
+			String body = gson.toJson(session);
+			
+			HTTPResponse response = httpClient.post(body);
+			int responseCode = response.code;
+			String responseData = response.data;
+			//logger.info("HTTP Response code: " + responseCode);
+			//logger.info("HTTP response data: " + responseData);
+			
+			if (responseCode >= 200 && responseCode <= 299) {
+				Gson gsonResp = new Gson();
+				responseSession = gsonResp.fromJson(responseData, Session.class);	
+			}
 
+		} catch(Exception e) {
+			//logger.error(e);
+		}
+		
+		return responseSession;
+	}
+	
+	public Session retrieveSession(String sessionId) {
+		
+		Session responseSession = null;
+		
+		try {
+			String url = baseUrl + "/session/" + sessionId;
+			HTTPClient httpClient = new HttpUrlHTTPClient(url);
+		
+			httpClient.setHeader("Content-Type", "application/json");
+			httpClient.setHeader("Accept", "application/json");
+			
+			HTTPResponse response = httpClient.get();
+			int responseCode = response.code;
+			String responseData = response.data;
+			//logger.info("HTTP Response code: " + responseCode);
+			//logger.info("HTTP response data: " + responseData);
+			
+			if (responseCode >= 200 && responseCode <= 299) {
+				Gson gsonResp = new Gson();
+				responseSession = gsonResp.fromJson(responseData, Session.class);	
+			}
+
+		} catch(Exception e) {
+			//logger.error(e);
+		}
+		
+		return responseSession;
+	}
 }

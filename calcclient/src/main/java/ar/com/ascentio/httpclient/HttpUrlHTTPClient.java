@@ -9,13 +9,13 @@ import java.net.URL;
 //import org.apache.log4j.Logger;
 
 
-public class HTTPConnection {
+public class HttpUrlHTTPClient implements HTTPClient {
 	
 	//static Logger logger = Logger.getLogger(HTTPConnection.class);
 	
 	private HttpURLConnection httpConnection = null;
 	
-	public HTTPConnection(String url) {
+	public HttpUrlHTTPClient(String url) {
 		try {
 			URL urlObj = new URL(url);
 			
@@ -30,10 +30,18 @@ public class HTTPConnection {
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see ar.com.ascentio.httpclient.HTTPClient#setHeader(java.lang.String, java.lang.String)
+	 */
+	@Override
 	public void setHeader(String property, String value) {
 		httpConnection.setRequestProperty(property, value);
 	}
 	
+	/* (non-Javadoc)
+	 * @see ar.com.ascentio.httpclient.HTTPClient#get()
+	 */
+	@Override
 	public HTTPResponse get() {
 		
 		//logger.debug("GET " + httpConnection.getURL().toString());
@@ -50,6 +58,10 @@ public class HTTPConnection {
 		return response;
 	}
 	
+	/* (non-Javadoc)
+	 * @see ar.com.ascentio.httpclient.HTTPClient#post(java.lang.String)
+	 */
+	@Override
 	public HTTPResponse post(String body) {
 		
 		//logger.debug("POST " + httpConnection.getURL().toString());
@@ -69,6 +81,10 @@ public class HTTPConnection {
 		return response;
 	}
 	
+	/* (non-Javadoc)
+	 * @see ar.com.ascentio.httpclient.HTTPClient#put(java.lang.String)
+	 */
+	@Override
 	public HTTPResponse put(String body) {
 		
 		//logger.debug("PUT " + httpConnection.getURL().toString());
