@@ -1,7 +1,5 @@
 package ar.com.ascentio.calcservice;
 
-import java.sql.SQLException;
-
 import org.junit.Assert;
 
 import junit.framework.Test;
@@ -38,8 +36,8 @@ public class SessionRepositoryTest
 		
     	try {
 			repo = new SessionRepository();
-		} catch (SQLException e) {
-			fail();
+		} catch (Exception e) {
+			fail(e.getMessage());
 		}
 		
     	String[] statements = {"1+1", "2+2"};
@@ -58,7 +56,7 @@ public class SessionRepositoryTest
 		
     	try {
 			repo = new SessionRepository();
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			fail();
 		}
 		
@@ -83,7 +81,7 @@ public class SessionRepositoryTest
 		
     	try {
 			repo = new SessionRepository();
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			fail();
 		}
 		

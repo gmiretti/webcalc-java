@@ -11,27 +11,25 @@ public class SessionRepository {
 	
 	Connection connection = null;
 	
-	SessionRepository() throws SQLException {
+	SessionRepository() throws Exception {
 		
 		try {
 			Class.forName("org.sqlite.JDBC");
-		} catch (ClassNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			connection = DriverManager.getConnection("jdbc:sqlite:calcsession.db");
+		} catch (Exception e1) {
+			throw e1;
 		}	
 	}
 	
 	public void storeSession(Session session) {	
 	    try
-	    {
-	    	connection = DriverManager.getConnection("jdbc:sqlite:C:/tools/calcsession.db");
-	    	
+	    {	
 	    	Statement statement = connection.createStatement();
 	    	statement.setQueryTimeout(30);  // set timeout to 30 sec.
 	    	
 	    	String sql;
 	    	//statement.executeUpdate("drop table if exists session");
-	    	//statement.executeUpdate("create table session (sessionid string, statement string)");
+	    	statement.executeUpdate("create table if not exists session (sessionid string, statement string)");
 	    	
 	    	// Store delete previous session with same name
 	    	sql = String.format("delete from session where sessionid = '%s'", session.sessionId);
@@ -47,19 +45,6 @@ public class SessionRepository {
 	    	// it probably means no database file is found
 	    	System.err.println(e.getMessage());
 	    }
-	    finally
-	    {
-	    	try
-	    	{
-	    		if(connection != null)
-	    			connection.close();
-	    	}
-	    	catch(SQLException e)
-	    	{
-	    		// connection close failed.
-	    		System.err.println(e);
-	    	}
-	    }	
 	}
 	
 	public Session getSession(String sessionId) {
@@ -69,7 +54,7 @@ public class SessionRepository {
 		String calcStatement;
 		
 		try {
-			connection = DriverManager.getConnection("jdbc:sqlite:C:/tools/calcsession.db");
+			
 			Statement statement = connection.createStatement();
 			String sql = String.format("select statement from session where sessionid = '%s'", sessionId);
 			rs = statement.executeQuery(sql);
@@ -89,19 +74,6 @@ public class SessionRepository {
 	    	// if the error message is "out of memory", 
 	    	// it probably means no database file is found
 	    	//System.err.println(e.getMessage());
-	    }
-		finally
-	    {
-	    	try
-	    	{
-	    		if(connection != null)
-	    			connection.close();
-	    	}
-	    	catch(SQLException e)
-	    	{
-	    		// connection close failed.
-	    		//System.err.println(e);
-	    	}
 	    }	
 		
 		return result;

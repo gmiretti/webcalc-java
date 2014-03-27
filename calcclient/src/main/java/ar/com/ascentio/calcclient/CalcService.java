@@ -21,7 +21,7 @@ public class CalcService {
 		this.factory = factory;
 	}
 
-	public EvalResponse postEval(EvalRequest evalRequest) {
+	public EvalResponse postEval (EvalRequest evalRequest) {
 		
 		EvalResponse evalResponse = null;
 		
@@ -47,7 +47,7 @@ public class CalcService {
 			}
 
 		} catch(Exception e) {
-			throw e;
+			//loger.error(e);
 		}
 		
 		return evalResponse;
