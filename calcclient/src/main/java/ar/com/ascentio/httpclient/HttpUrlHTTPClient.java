@@ -30,18 +30,10 @@ public class HttpUrlHTTPClient implements HTTPClient {
 		}
 	}
 	
-	/* (non-Javadoc)
-	 * @see ar.com.ascentio.httpclient.HTTPClient#setHeader(java.lang.String, java.lang.String)
-	 */
-	@Override
 	public void setHeader(String property, String value) {
 		httpConnection.setRequestProperty(property, value);
 	}
 	
-	/* (non-Javadoc)
-	 * @see ar.com.ascentio.httpclient.HTTPClient#get()
-	 */
-	@Override
 	public HTTPResponse get() {
 		
 		//logger.debug("GET " + httpConnection.getURL().toString());
@@ -58,10 +50,6 @@ public class HttpUrlHTTPClient implements HTTPClient {
 		return response;
 	}
 	
-	/* (non-Javadoc)
-	 * @see ar.com.ascentio.httpclient.HTTPClient#post(java.lang.String)
-	 */
-	@Override
 	public HTTPResponse post(String body) {
 		
 		//logger.debug("POST " + httpConnection.getURL().toString());
@@ -81,10 +69,6 @@ public class HttpUrlHTTPClient implements HTTPClient {
 		return response;
 	}
 	
-	/* (non-Javadoc)
-	 * @see ar.com.ascentio.httpclient.HTTPClient#put(java.lang.String)
-	 */
-	@Override
 	public HTTPResponse put(String body) {
 		
 		//logger.debug("PUT " + httpConnection.getURL().toString());

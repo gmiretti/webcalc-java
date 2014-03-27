@@ -3,7 +3,7 @@ package ar.com.ascentio.calcclient;
 //import org.apache.log4j.Logger;
 
 import ar.com.ascentio.httpclient.HTTPClient;
-import ar.com.ascentio.httpclient.HttpUrlHTTPClient;
+import ar.com.ascentio.httpclient.HTTPClientFactory;
 import ar.com.ascentio.httpclient.HTTPResponse;
 
 import com.google.gson.Gson;
@@ -14,9 +14,11 @@ public class CalcService {
 	
 	//private CPConfig cpConfig;
 	private String baseUrl = null;
+	private HTTPClientFactory factory = null;
 	
-	CalcService(String baseUrl) {
-		this.baseUrl = baseUrl;
+	CalcService(String baseUrl, HTTPClientFactory factory) {
+		this.baseUrl = baseUrl; 
+		this.factory = factory;
 	}
 
 	public EvalResponse postEval(EvalRequest evalRequest) {
@@ -25,7 +27,7 @@ public class CalcService {
 		
 		try {
 			String url = baseUrl + "/eval";
-			HTTPClient httpClient = new HttpUrlHTTPClient(url);
+			HTTPClient httpClient = factory.getClient(url);
 		
 			httpClient.setHeader("Content-Type", "application/json");
 			httpClient.setHeader("Accept", "application/json");
@@ -45,7 +47,7 @@ public class CalcService {
 			}
 
 		} catch(Exception e) {
-			//logger.error(e);
+			throw e;
 		}
 		
 		return evalResponse;
@@ -57,7 +59,7 @@ public class CalcService {
 		
 		try {
 			String url = baseUrl + "/session";
-			HTTPClient httpClient = new HttpUrlHTTPClient(url);
+			HTTPClient httpClient = factory.getClient(url);
 		
 			httpClient.setHeader("Content-Type", "application/json");
 			httpClient.setHeader("Accept", "application/json");
@@ -89,7 +91,7 @@ public class CalcService {
 		
 		try {
 			String url = baseUrl + "/session/" + sessionId;
-			HTTPClient httpClient = new HttpUrlHTTPClient(url);
+			HTTPClient httpClient = factory.getClient(url);
 		
 			httpClient.setHeader("Content-Type", "application/json");
 			httpClient.setHeader("Accept", "application/json");
