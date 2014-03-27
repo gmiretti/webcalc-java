@@ -1,2 +1,4 @@
 calculator/target/
 calcservice/target/
+calcclient/target/
+calcservice/calcsession.db
