@@ -44,6 +44,20 @@
           <target>1.7</target>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>1.2.1</version>
+        <configuration>
+          <executable>mvn</executable>
+          <arguments>
+            <argument>clean</argument>
+            <argument>install</argument>
+            <argument>exec:java</argument>
+          </arguments>
+          <mainClass>ar.com.ascentio.calcclient.App</mainClass>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 </project>
