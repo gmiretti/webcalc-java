@@ -91,11 +91,11 @@
           <artifactId>tomcat7-maven-plugin</artifactId>
           <version>2.2</version>
           <configuration>
-              <url>http://127.0.0.1:8080/manager/html</url>
+              <url>http://127.0.0.1:8080/manager/text</url>
               <server>TomcatServer</server>
-              <username>tomcat</username>
-              <password>intel123</password>
-            <path>/calcservice</path>
+              <username>admin-text</username>
+              <password>123456</password>
+              <path>/calcservice</path>
           </configuration>
         </plugin>
     </plugins>
